@@ -205,10 +205,134 @@ body, html{
         transform: translate(-50%,-50%);
         text-align: center;
     }
+
+    .modal-box {
+        width: 90%;
+        padding: 28px 18px;
+    }
+    .modal-box h2 {
+        font-size: 26px;
+    }
+    .modal-box textarea {
+        font-size: 15px;
+    }
+}
+
+/* ── Modal Overlay ── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.25s ease;
+}
+.modal-overlay.active {
+    display: flex;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes slideUp {
+    from { transform: translateY(40px) scale(0.97); opacity: 0; }
+    to   { transform: translateY(0)     scale(1);    opacity: 1; }
+}
+
+.modal-box {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 24px;
+    padding: 36px 32px 28px;
+    width: 420px;
+    max-width: 95vw;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(147,77,77,0.22), 0 4px 20px rgba(0,0,0,0.12);
+    animation: slideUp 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+.modal-box h2 {
+    font-family: 'Bellota Text', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    font-style: italic;
+    text-shadow: 0px 3px 6px rgb(147,77,77);
+    margin-bottom: 18px;
+    line-height: 1.2;
+}
+.modal-box textarea {
+    width: 100%;
+    min-height: 110px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(147,77,77,0.35);
+    background: rgba(255,255,255,0.7);
+    font-family: 'Bellota Text', sans-serif;
+    font-size: 17px;
+    padding: 12px 14px;
+    resize: vertical;
+    outline: none;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+.modal-box textarea:focus {
+    border-color: rgb(147,77,77);
+}
+.modal-btn-row {
+    display: flex;
+    gap: 14px;
+    margin-top: 20px;
+    justify-content: center;
+}
+.modal-submit {
+    flex: 1;
+    border: none;
+    height: 48px;
+    font-size: 18px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #e07a7a, #c0394b);
+    color: #fff;
+    font-family: 'Bellota Text', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(192,57,75,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.modal-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(192,57,75,0.4);
+}
+.modal-submit:active {
+    transform: translateY(0);
+}
+.modal-cancel {
+    border: 1.5px solid rgba(147,77,77,0.4);
+    height: 48px;
+    font-size: 18px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.5);
+    font-family: 'Bellota Text', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0 22px;
+    transition: background 0.15s;
+}
+.modal-cancel:hover {
+    background: rgba(147,77,77,0.08);
+}
+#modal-status {
+    margin-top: 12px;
+    font-size: 15px;
+    min-height: 22px;
+    color: rgb(147,77,77);
+    font-weight: 600;
 }
 
     
-    </style>
     </style>
 </head>
 <body>
@@ -232,13 +356,22 @@ body, html{
                 <div class="fix-gif">
                     <div class="fix-gifimg"></div>
                 </div>
-                <!-- <a href="https://wa.me/+918595790116?text='Chalo date pr chalein!!!!!' ">
-                </a> -->
                     <button class="answer" id="fix">Let's Fix a date</button>
                 
             </div>
     </div>
 
+    <!-- When are you free? Modal -->
+    <div class="modal-overlay" id="availabilityModal">
+        <div class="modal-box">
+            <h2>🗓️ When are you free? 💕</h2>
+            <textarea id="availabilityInput" placeholder="e.g. Saturday afternoon, next Friday evening..."></textarea>
+            <div id="modal-status"></div>
+            <div class="modal-btn-row">
+                <button class="modal-cancel" id="modalCancel">Maybe later</button>
+                <button class="modal-submit" id="modalSubmit">Send 💌</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -266,9 +399,63 @@ noAnswerMethod = () => {
 no.addEventListener('click', noAnswerMethod)
 yes.addEventListener('click', yesAnswerMethod)
 
-document.getElementById("fix").addEventListener("click", function(){
-    window.location= "https://wa.me/+918802130983?text=Chalo date pr chalein !!!!! ";
-}, false);
+// ── Google Apps Script Web App URL ──────────────────────────────────────────
+// Replace this URL with your own Apps Script deployment URL (see README below)
+const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+const modal       = document.getElementById("availabilityModal");
+const modalCancel = document.getElementById("modalCancel");
+const modalSubmit = document.getElementById("modalSubmit");
+const modalInput  = document.getElementById("availabilityInput");
+const modalStatus = document.getElementById("modal-status");
+
+document.getElementById("fix").addEventListener("click", function () {
+    modal.classList.add("active");
+    modalInput.value = "";
+    modalStatus.textContent = "";
+    modalInput.focus();
+});
+
+modalCancel.addEventListener("click", function () {
+    modal.classList.remove("active");
+});
+
+modal.addEventListener("click", function (e) {
+    if (e.target === modal) modal.classList.remove("active");
+});
+
+modalSubmit.addEventListener("click", async function () {
+    const answer = modalInput.value.trim();
+    if (!answer) {
+        modalStatus.textContent = "Please write when you're free first! 🥺";
+        return;
+    }
+
+    modalSubmit.disabled = true;
+    modalStatus.textContent = "Sending... 💌";
+
+    const timestamp = new Date().toLocaleString("en-PH", { timeZone: "Asia/Manila" });
+
+    try {
+        const params = new URLSearchParams();
+        params.append("answer", answer);
+        params.append("timestamp", timestamp);
+
+        await fetch(APPS_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: params.toString()
+        });
+
+        modalStatus.textContent = "Yay! Can't wait! 🎉";
+        modalSubmit.textContent = "Sent! 💕";
+        setTimeout(() => modal.classList.remove("active"), 2200);
+    } catch (err) {
+        modalStatus.textContent = "Oops, something went wrong. Try again? 😢";
+        modalSubmit.disabled = false;
+    }
+});
     </script>
     
 </body>
