@@ -1,191 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Date?</title>
     <link rel="stylesheet" href="style.css">
 
-    
-    <style>
 
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@1,300&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
-        *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Bellota Text', sans-serif;
-    
-}
-body, html{
-    width: 100%;
-    height: 100vh;
-    background-image: url("https://img.freepik.com/free-vector/cloud-background-vector-cute-desktop-wallpaper_53876-136885.jpg?w=826&t=st=1704789857~exp=1704790457~hmac=381926ab355f58892a476af4dd9c1b104192572bd7b1a38ac49528094d2ec6ce");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Bellota Text', sans-serif;
 
-    background-size:cover;
-}
+        }
 
-.confirmation{
-    display: none;
-    width: 400px;
-    height: 500px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    /* padding-top: 50px; */
-}
+        body,
+        html {
+            width: 100%;
+            height: 100vh;
+            background-image: url("https://img.freepik.com/free-vector/cloud-background-vector-cute-desktop-wallpaper_53876-136885.jpg?w=826&t=st=1704789857~exp=1704790457~hmac=381926ab355f58892a476af4dd9c1b104192572bd7b1a38ac49528094d2ec6ce");
 
-.confirmation h1{
-    font-style: bolder;
-    font-size: 50px;
-    font-weight: 700;
-    text-shadow: 0px 3px 6px rgb(147, 77, 77);
-    line-height: 90px;
-}
+            background-size: cover;
+        }
 
-.fix-gif{
+        .confirmation {
+            display: none;
+            width: 400px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            /* padding-top: 50px; */
+        }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:100%;
-    height: 200px;
-    
+        .confirmation h1 {
+            font-style: bolder;
+            font-size: 50px;
+            font-weight: 700;
+            text-shadow: 0px 3px 6px rgb(147, 77, 77);
+            line-height: 90px;
+        }
 
-}
+        .fix-gif {
 
-.fix-gifimg{
-    border-radius: 10px;
-    width: 384px;
-    height: 216px;
-    background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif");
-    background-size: cover; 
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 200px;
 
-.container h1{
-    margin-bottom: 20px;
-    margin-top: 50px;
-    font-style: bolder;
-    font-size: 50px;
-    font-weight: 700;
-    text-shadow: 0px 3px 6px rgb(147, 77, 77);
-}
 
-#fix{
-    margin-top: 30px;
-        border: none;
-        width: 400px;
-        height: 50px;
-        font-size: 30px;
-        border-radius: 10px;
-        background: none;
-        backdrop-filter: blur(5px);
-        border: 1px solid black;
-        font-weight: 550;
-}
-.container{
-    width: 400px;
-    height: 500px;
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    
-}
+        }
 
-.gif{
+        .fix-gifimg {
+            border-radius: 10px;
+            width: 384px;
+            height: 216px;
+            background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif");
+            background-size: cover;
+        }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:100%;
-    height: 300px;
-    
+        .container h1 {
+            margin-bottom: 20px;
+            margin-top: 50px;
+            font-style: bolder;
+            font-size: 50px;
+            font-weight: 700;
+            text-shadow: 0px 3px 6px rgb(147, 77, 77);
+        }
 
-}
-
-.gifimg{
-    border-radius: 10px;
-    width: 384px;
-    height: 254px;
-    background-image: url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif");
-    background-size: cover; 
-}
-
-.answer-box{
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    /* background-color: black; */
-    padding: 10px;
-    margin-top: 5px;
-    width: 100%;
-    height: 80px;
-    gap: 50px;
-}
-
-.answer{
-    border: none;
-    width: 100px;
-    height: 50px;
-    font-size: 30px;
-    border-radius: 10px;
-    background: none;
-    backdrop-filter: blur(5px);
-    border: 1px solid black;
-    font-weight: 550;
-    
-}
-.answer:hover{
-    box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.449);
-}
-
-@media screen and (max-width: 600px){
-    .container{
-        width: 100%;
-    }
-    .container h1{
-        margin-top: 20px;
-        padding: 8px;
-        font-size: 35px;
-    }
-    .answer{
-        font-size: 20px;
-        padding: 5px;
-    }
-    .gifimg{
-        border-radius: 10px;
-        width: 300px;
-        height: 198px;
-        background-image: url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif");
-        background-size: cover; 
-    }
-    .fix-gif{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width:100%;
-        height: 200px;
-        
-    
-    }
-    
-    .fix-gifimg{
-        border-radius: 10px;
-        width: 300px;
-        height: 168px;
-        background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif");
-        background-size: cover; 
-    }
-
-    #fix{
-        margin-top: 30px;
+        #fix {
+            margin-top: 30px;
             border: none;
-            width: 250px;
+            width: 400px;
             height: 50px;
             font-size: 30px;
             border-radius: 10px;
@@ -193,148 +87,288 @@ body, html{
             backdrop-filter: blur(5px);
             border: 1px solid black;
             font-weight: 550;
-    }
+        }
 
-    .confirmation{
-        display: none;
-        width: 100%;
-        height: 500px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-        text-align: center;
-    }
+        .container {
+            width: 400px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            transform: translate(-50%, -50%);
+            text-align: center;
 
-    .modal-box {
-        width: 90%;
-        padding: 28px 18px;
-    }
-    .modal-box h2 {
-        font-size: 26px;
-    }
-    .modal-box textarea {
-        font-size: 15px;
-    }
-}
+        }
 
-/* ── Modal Overlay ── */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.25s ease;
-}
-.modal-overlay.active {
-    display: flex;
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-@keyframes slideUp {
-    from { transform: translateY(40px) scale(0.97); opacity: 0; }
-    to   { transform: translateY(0)     scale(1);    opacity: 1; }
-}
+        .gif {
 
-.modal-box {
-    background: rgba(255,255,255,0.88);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.6);
-    border-radius: 24px;
-    padding: 36px 32px 28px;
-    width: 420px;
-    max-width: 95vw;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(147,77,77,0.22), 0 4px 20px rgba(0,0,0,0.12);
-    animation: slideUp 0.35s cubic-bezier(.34,1.56,.64,1);
-}
-.modal-box h2 {
-    font-family: 'Bellota Text', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    font-style: italic;
-    text-shadow: 0px 3px 6px rgb(147,77,77);
-    margin-bottom: 18px;
-    line-height: 1.2;
-}
-.modal-box textarea {
-    width: 100%;
-    min-height: 110px;
-    border-radius: 12px;
-    border: 1.5px solid rgba(147,77,77,0.35);
-    background: rgba(255,255,255,0.7);
-    font-family: 'Bellota Text', sans-serif;
-    font-size: 17px;
-    padding: 12px 14px;
-    resize: vertical;
-    outline: none;
-    transition: border 0.2s;
-    box-sizing: border-box;
-}
-.modal-box textarea:focus {
-    border-color: rgb(147,77,77);
-}
-.modal-btn-row {
-    display: flex;
-    gap: 14px;
-    margin-top: 20px;
-    justify-content: center;
-}
-.modal-submit {
-    flex: 1;
-    border: none;
-    height: 48px;
-    font-size: 18px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #e07a7a, #c0394b);
-    color: #fff;
-    font-family: 'Bellota Text', sans-serif;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(192,57,75,0.35);
-    transition: transform 0.15s, box-shadow 0.15s;
-}
-.modal-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 7px 20px rgba(192,57,75,0.4);
-}
-.modal-submit:active {
-    transform: translateY(0);
-}
-.modal-cancel {
-    border: 1.5px solid rgba(147,77,77,0.4);
-    height: 48px;
-    font-size: 18px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.5);
-    font-family: 'Bellota Text', sans-serif;
-    font-weight: 700;
-    cursor: pointer;
-    padding: 0 22px;
-    transition: background 0.15s;
-}
-.modal-cancel:hover {
-    background: rgba(147,77,77,0.08);
-}
-#modal-status {
-    margin-top: 12px;
-    font-size: 15px;
-    min-height: 22px;
-    color: rgb(147,77,77);
-    font-weight: 600;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 300px;
 
-    
+
+        }
+
+        .gifimg {
+            border-radius: 10px;
+            width: 384px;
+            height: 254px;
+            background-image: url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif");
+            background-size: cover;
+        }
+
+        .answer-box {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            /* background-color: black; */
+            padding: 10px;
+            margin-top: 5px;
+            width: 100%;
+            height: 80px;
+            gap: 50px;
+        }
+
+        .answer {
+            border: none;
+            width: 100px;
+            height: 50px;
+            font-size: 30px;
+            border-radius: 10px;
+            background: none;
+            backdrop-filter: blur(5px);
+            border: 1px solid black;
+            font-weight: 550;
+
+        }
+
+        .answer:hover {
+            box-shadow: inset 0px 3px 6px rgba(0, 0, 0, 0.449);
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+            }
+
+            .container h1 {
+                margin-top: 20px;
+                padding: 8px;
+                font-size: 35px;
+            }
+
+            .answer {
+                font-size: 20px;
+                padding: 5px;
+            }
+
+            .gifimg {
+                border-radius: 10px;
+                width: 300px;
+                height: 198px;
+                background-image: url("https://media1.tenor.com/m/UAFrdZCt29YAAAAC/milk-and-mocha-waiting-for-reply.gif");
+                background-size: cover;
+            }
+
+            .fix-gif {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 200px;
+
+
+            }
+
+            .fix-gifimg {
+                border-radius: 10px;
+                width: 300px;
+                height: 168px;
+                background-image: url("https://media1.tenor.com/m/2VprHA868S8AAAAC/yummy-desserts-desserts-milk-mocha.gif");
+                background-size: cover;
+            }
+
+            #fix {
+                margin-top: 30px;
+                border: none;
+                width: 250px;
+                height: 50px;
+                font-size: 30px;
+                border-radius: 10px;
+                background: none;
+                backdrop-filter: blur(5px);
+                border: 1px solid black;
+                font-weight: 550;
+            }
+
+            .confirmation {
+                display: none;
+                width: 100%;
+                height: 500px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+            }
+
+            .modal-box {
+                width: 90%;
+                padding: 28px 18px;
+            }
+
+            .modal-box h2 {
+                font-size: 26px;
+            }
+
+            .modal-box textarea {
+                font-size: 15px;
+            }
+        }
+
+        /* ── Modal Overlay ── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(40px) scale(0.97);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-box {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 36px 32px 28px;
+            width: 420px;
+            max-width: 95vw;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(147, 77, 77, 0.22), 0 4px 20px rgba(0, 0, 0, 0.12);
+            animation: slideUp 0.35s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .modal-box h2 {
+            font-family: 'Bellota Text', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            font-style: italic;
+            text-shadow: 0px 3px 6px rgb(147, 77, 77);
+            margin-bottom: 18px;
+            line-height: 1.2;
+        }
+
+        .modal-box textarea {
+            width: 100%;
+            min-height: 110px;
+            border-radius: 12px;
+            border: 1.5px solid rgba(147, 77, 77, 0.35);
+            background: rgba(255, 255, 255, 0.7);
+            font-family: 'Bellota Text', sans-serif;
+            font-size: 17px;
+            padding: 12px 14px;
+            resize: vertical;
+            outline: none;
+            transition: border 0.2s;
+            box-sizing: border-box;
+        }
+
+        .modal-box textarea:focus {
+            border-color: rgb(147, 77, 77);
+        }
+
+        .modal-btn-row {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .modal-submit {
+            flex: 1;
+            border: none;
+            height: 48px;
+            font-size: 18px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #e07a7a, #c0394b);
+            color: #fff;
+            font-family: 'Bellota Text', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(192, 57, 75, 0.35);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .modal-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(192, 57, 75, 0.4);
+        }
+
+        .modal-submit:active {
+            transform: translateY(0);
+        }
+
+        .modal-cancel {
+            border: 1.5px solid rgba(147, 77, 77, 0.4);
+            height: 48px;
+            font-size: 18px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            font-family: 'Bellota Text', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0 22px;
+            transition: background 0.15s;
+        }
+
+        .modal-cancel:hover {
+            background: rgba(147, 77, 77, 0.08);
+        }
+
+        #modal-status {
+            margin-top: 12px;
+            font-size: 15px;
+            min-height: 22px;
+            color: rgb(147, 77, 77);
+            font-weight: 600;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="question">
@@ -344,21 +378,21 @@ body, html{
             <div class="gifimg"></div>
         </div>
         <div class="answer-box">
-                <button class="answer" id="yes">Yes!!!</button>
-                <button class="answer" id="no">No</button>
+            <button class="answer" id="yes">Yes!!!</button>
+            <button class="answer" id="no">No</button>
         </div>
-        
+
     </div>
 
     <div class="confirmation">
         <h1>Yayyyyyyyy!!! Finally</h1>
-            <div class="question">
-                <div class="fix-gif">
-                    <div class="fix-gifimg"></div>
-                </div>
-                    <button class="answer" id="fix">Let's Fix a date</button>
-                
+        <div class="question">
+            <div class="fix-gif">
+                <div class="fix-gifimg"></div>
             </div>
+            <button class="answer" id="fix">Let's Fix a date</button>
+
+        </div>
     </div>
 
     <!-- When are you free? Modal -->
@@ -376,36 +410,36 @@ body, html{
 
     <script>
         const yes = document.querySelector("#yes");
-const no = document.querySelector("#no");
-const confirmation = document.querySelector(".confirmation");
-const container = document.querySelector(".container");
+        const no = document.querySelector("#no");
+        const confirmation = document.querySelector(".confirmation");
+        const container = document.querySelector(".container");
 
-yesAnswerMethod = () => {
-    container.style.display = 'none'
-    confirmation.style.display = 'block'
-}
+        yesAnswerMethod = () => {
+            container.style.display = 'none'
+            confirmation.style.display = 'block'
+        }
 
-noAnswerMethod = () => {
-    no.style.position = 'absolute'
+        noAnswerMethod = () => {
+            no.style.position = 'absolute'
 
-    xPosition = Math.floor(Math.random() * container.clientWidth)
-    yPosition = Math.floor(Math.random() * container.clientHeight)
+            xPosition = Math.floor(Math.random() * container.clientWidth)
+            yPosition = Math.floor(Math.random() * container.clientHeight)
 
-    no.style.top = `${yPosition}px`
-    no.style.left = `${xPosition}px`
+            no.style.top = `${yPosition}px`
+            no.style.left = `${xPosition}px`
 
-}
+        }
 
-no.addEventListener('click', noAnswerMethod)
-yes.addEventListener('click', yesAnswerMethod)
+        no.addEventListener('click', noAnswerMethod)
+        yes.addEventListener('click', yesAnswerMethod)
 
-// ── PHP + MySQL backend ─────────────────────────────────────────────────
-        const SAVE_URL = "save_response.php";
+        // ── Discord Webhook Backend ─────────────────────────────────────────────
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1540414795474276502/jrWjOkwT8VLYsEakagmy2K3e7auJMwyI1xlX_KZ0RE9Sl8QWWunqUIUBT7W1WJy_lzOC";
 
-        const modal       = document.getElementById("availabilityModal");
+        const modal = document.getElementById("availabilityModal");
         const modalCancel = document.getElementById("modalCancel");
         const modalSubmit = document.getElementById("modalSubmit");
-        const modalInput  = document.getElementById("availabilityInput");
+        const modalInput = document.getElementById("availabilityInput");
         const modalStatus = document.getElementById("modal-status");
 
         document.getElementById("fix").addEventListener("click", function () {
@@ -435,21 +469,23 @@ yes.addEventListener('click', yesAnswerMethod)
             modalSubmit.disabled = true;
             modalStatus.textContent = "Sending... 💌";
 
+            const timestamp = new Date().toLocaleString("en-PH", { timeZone: "Asia/Manila" });
+
             try {
-                const res = await fetch(SAVE_URL, {
+                const res = await fetch(DISCORD_WEBHOOK_URL, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ answer: answer })
+                    body: JSON.stringify({
+                        content: `💖 **Date Response Received!**\n🗓️ **Availability:** ${answer}\n⏰ **Answered At:** ${timestamp}`
+                    })
                 });
 
-                const data = await res.json();
-
-                if (data.status === "ok") {
+                if (res.ok) {
                     modalStatus.textContent = "Yay! Can't wait! 🎉";
                     modalSubmit.textContent = "Sent! 💕";
                     setTimeout(() => modal.classList.remove("active"), 2200);
                 } else {
-                    throw new Error(data.message || "Unknown error");
+                    throw new Error(`Discord error: ${res.status}`);
                 }
             } catch (err) {
                 modalStatus.textContent = "Oops, something went wrong. Try again? 😢";
@@ -458,6 +494,7 @@ yes.addEventListener('click', yesAnswerMethod)
             }
         });
     </script>
-    
+
 </body>
+
 </html>
