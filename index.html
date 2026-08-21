@@ -399,63 +399,64 @@ noAnswerMethod = () => {
 no.addEventListener('click', noAnswerMethod)
 yes.addEventListener('click', yesAnswerMethod)
 
-// ── Google Apps Script Web App URL ──────────────────────────────────────────
-// Replace this URL with your own Apps Script deployment URL (see README below)
-const APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+// ── PHP + MySQL backend ─────────────────────────────────────────────────
+        const SAVE_URL = "save_response.php";
 
-const modal       = document.getElementById("availabilityModal");
-const modalCancel = document.getElementById("modalCancel");
-const modalSubmit = document.getElementById("modalSubmit");
-const modalInput  = document.getElementById("availabilityInput");
-const modalStatus = document.getElementById("modal-status");
+        const modal       = document.getElementById("availabilityModal");
+        const modalCancel = document.getElementById("modalCancel");
+        const modalSubmit = document.getElementById("modalSubmit");
+        const modalInput  = document.getElementById("availabilityInput");
+        const modalStatus = document.getElementById("modal-status");
 
-document.getElementById("fix").addEventListener("click", function () {
-    modal.classList.add("active");
-    modalInput.value = "";
-    modalStatus.textContent = "";
-    modalInput.focus();
-});
-
-modalCancel.addEventListener("click", function () {
-    modal.classList.remove("active");
-});
-
-modal.addEventListener("click", function (e) {
-    if (e.target === modal) modal.classList.remove("active");
-});
-
-modalSubmit.addEventListener("click", async function () {
-    const answer = modalInput.value.trim();
-    if (!answer) {
-        modalStatus.textContent = "Please write when you're free first! 🥺";
-        return;
-    }
-
-    modalSubmit.disabled = true;
-    modalStatus.textContent = "Sending... 💌";
-
-    const timestamp = new Date().toLocaleString("en-PH", { timeZone: "Asia/Manila" });
-
-    try {
-        const params = new URLSearchParams();
-        params.append("answer", answer);
-        params.append("timestamp", timestamp);
-
-        await fetch(APPS_SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: params.toString()
+        document.getElementById("fix").addEventListener("click", function () {
+            modal.classList.add("active");
+            modalInput.value = "";
+            modalStatus.textContent = "";
+            modalSubmit.disabled = false;
+            modalSubmit.textContent = "Send 💌";
+            modalInput.focus();
         });
 
-        modalStatus.textContent = "Yay! Can't wait! 🎉";
-        modalSubmit.textContent = "Sent! 💕";
-        setTimeout(() => modal.classList.remove("active"), 2200);
-    } catch (err) {
-        modalStatus.textContent = "Oops, something went wrong. Try again? 😢";
-        modalSubmit.disabled = false;
-    }
-});
+        modalCancel.addEventListener("click", function () {
+            modal.classList.remove("active");
+        });
+
+        modal.addEventListener("click", function (e) {
+            if (e.target === modal) modal.classList.remove("active");
+        });
+
+        modalSubmit.addEventListener("click", async function () {
+            const answer = modalInput.value.trim();
+            if (!answer) {
+                modalStatus.textContent = "Please write when you're free first! 🥺";
+                return;
+            }
+
+            modalSubmit.disabled = true;
+            modalStatus.textContent = "Sending... 💌";
+
+            try {
+                const res = await fetch(SAVE_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ answer: answer })
+                });
+
+                const data = await res.json();
+
+                if (data.status === "ok") {
+                    modalStatus.textContent = "Yay! Can't wait! 🎉";
+                    modalSubmit.textContent = "Sent! 💕";
+                    setTimeout(() => modal.classList.remove("active"), 2200);
+                } else {
+                    throw new Error(data.message || "Unknown error");
+                }
+            } catch (err) {
+                modalStatus.textContent = "Oops, something went wrong. Try again? 😢";
+                console.error(err);
+                modalSubmit.disabled = false;
+            }
+        });
     </script>
     
 </body>
